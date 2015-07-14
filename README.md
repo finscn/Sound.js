@@ -57,7 +57,7 @@ Use HTML5 Audio:
  ```
  
  tag: you can do something to many sounds by tag.
- eaxmple:
+ example:
  
  Sound.setMuteByTag("bg", true)
  
