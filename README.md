@@ -6,15 +6,16 @@ a Wrapper of  Audio &amp; WebAudio for playing a normal audio file
 Use HTML5 Audio:
 ```
     var sound = new Sound({
-        id: "bgm",
-        src: "res/bgm.mp3",
+        id: "bgm-1",
+        src: "res/bgm-1.mp3",
         loop: false,
         volume: 1,
+        tag: "bg",
         channel: 4,
         useWebAudio: false,
     });
     sound.load();
-    sound.onLoad=function(){
+    sound.onLoad = function(){
        this.play();
     }
  ```
@@ -23,10 +24,11 @@ Use HTML5 Audio:
  
  ```
      var sound = new Sound({
-        id: "bgm",
-        src: "res/bgm.mp3",
+        id: "sfx-1",
+        src: "res/sfx-1.mp3",
         loop: false,
         volume: 1,
+        tag: "sfx",
         channel: 2,
         useWebAudio: true,
     });
@@ -53,3 +55,11 @@ Use HTML5 Audio:
  
  
  ```
+ 
+ tag: you can do something to many sounds by tag.
+ eaxmple:
+ 
+ Sound.setMuteByTag("bg", true)
+ 
+ all sounds that tag=="bg" will be muted.
+ 
