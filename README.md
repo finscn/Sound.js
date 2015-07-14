@@ -63,3 +63,12 @@ Use HTML5 Audio:
  
  all sounds that tag=="bg" will be muted.
  
+ 
+ =====================
+ 
+ Sound.loadSounds : load sounds in batch
+ 
+ ... ...
+ 
+ More features in Source Code  :P
+ 
