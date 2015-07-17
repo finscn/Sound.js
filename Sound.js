@@ -177,11 +177,12 @@ var GT = GT || {};
         resume: function() {
             this.playTime = this.context.currentTime;
             var source;
-            if (this.buffer) {
+            if (this.audio) {
+                source = this.context.createMediaElementSource(this.audio);
+            } else {
+                // } else if (this.buffer) {
                 source = this.context.createBufferSource();
                 source.buffer = this.buffer;
-            } else if (this.audio) {
-                source = this.context.createMediaElementSource(this.audio);
             }
             this.source = source;
             source.connect(this.gain);
@@ -596,7 +597,7 @@ var GT = GT || {};
         var keys = Object.keys(_soundPool);
         return keys.length;
     };
-    Sound.getAll = function(id) {
+    Sound.getAll = function() {
         return _soundPool;
     };
 
@@ -663,7 +664,11 @@ var GT = GT || {};
         var now = Date.now();
         if (!t || now - t > interval) {
             Sound.smartPlay.timer[id] = now;
-            s.play();
+            try {
+                s.play();
+            } catch (e) {
+                console.log("Sound.smartPlay ERROR:", s.id, e);
+            }
             return true;
         }
         return false;
