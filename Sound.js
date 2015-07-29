@@ -337,7 +337,6 @@ var GT = GT || {};
             this.totalDuration = this.audio.duration;
             this.initRange();
 
-
             if (this.sprite) {
                 var Me = this;
                 this.onTimeUpdate = function(event) {
@@ -432,8 +431,10 @@ var GT = GT || {};
             this.audio.pause();
         },
         resume: function() {
-            this.audio.currentTime = this.beginTime + this.currentTime;
-            this.audio.play();
+            if (this.loaded) {
+                this.audio.currentTime = this.beginTime + this.currentTime;
+                this.audio.play();
+            }
             this.playing = true;
         },
         stop: function() {
@@ -712,7 +713,7 @@ var GT = GT || {};
         }
         var sound = _waitingForTouchLoad.shift();
         if (sound.loaded) {
-            console.log("Sound.touchLoad: loaded");
+            // console.log("Sound.touchLoad: loaded");
             return;
         }
         if (sound.tagName === "AUDIO") {
